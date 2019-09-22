@@ -1,0 +1,33 @@
+@import './mixin.less';
+.c-row{
+    position: relative;
+    box-sizing: border-box;
+    .clearfix();
+}
+
+
+.c-row--flex{
+    display: flex;
+}
+
+// @justify: start, center, end, space-between, space-around;
+// each(@justify, {
+//     .is-justify-@{value} {
+//         justify-content: @value;
+//     }
+// })
+.is-justify-start{
+    justify-content: flex-start;
+}
+.is-justify-center{
+    justify-content: center;
+}
+.is-justify-end{
+    justify-content: flex-end;
+}
+.is-justify-space-between{
+    justify-content: space-between;
+}
+.is-justify-space-around{
+    justify-content: space-around;
+}

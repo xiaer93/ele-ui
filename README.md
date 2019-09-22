@@ -1,29 +1,16 @@
-# ele-ui
+## 学习element-ui
 
-## Project setup
-```
-yarn install
-```
+技术栈：
+less+vue
+、、 改为postcss
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+1. 先实现基本组件
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+2. 接着学习element构建那一套，md直接生成最终的官网。
 
-### Run your tests
-```
-yarn run test
-```
+3. element-ui的css是如何引入的，el-row的样式源码怎么找不到？
 
-### Lints and fixes files
-```
-yarn run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+技能get
+1. less-for循环，栅格原理（padding水槽），provide/inject，响应式等等
+2. scass好像强大一点。
