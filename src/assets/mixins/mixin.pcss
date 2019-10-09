@@ -1,0 +1,50 @@
+@import "../common/config.pcss";
+
+@mixin b($block) {
+    .$(namespace)-$(block){
+        @content;
+    }
+}
+
+@mixin m($modifier) {
+    &$(modifier-separator)$(modifier) {
+        @content;
+    }
+}
+
+@mixin when($state) {
+    &.$(state-prefix)-$(state) {
+        @content;
+    }
+}
+
+/*这个mixin干嘛的*/
+@mixin e($element) {
+    /*
+        fixme: 此处无法正确解析&；与scss语法规则相差甚远。
+    */
+    /* $selector: &; */
+
+    /* fixme: why why why ??? */
+    /* $currentSelector: $(^&)$(element-separator)$(element); */
+
+    &$(element-separator)$(element) {
+        @content;
+    }
+
+    /* @if hitAllSpecialNestRule($selector) {
+        @at-root{
+            $selector {
+                &$(element-separator)$(element) {
+                    @content;
+                }
+            }
+        }
+    } @else {
+        @at-root{
+            &$(element-separator)$(element) {
+                @content;
+            }
+        }
+    } */
+}

@@ -14,3 +14,13 @@ less+vue
 技能get
 1. less-for循环，栅格原理（padding水槽），provide/inject，响应式等等
 2. scass好像强大一点。
+
+postcss, 不支持pcss后缀（resolve，extension），不支持语法检查，不支持单行注释？？？不支持报错显示？？？
+不支持如下形式 $--button-default-background-color
+
+postcss的插件是有先后顺序的，colorMix放在precss之后
+
+emitter--mixin，radio---radio-group---form的三级通信机制？
+
+aria标签属性，无障碍？
+

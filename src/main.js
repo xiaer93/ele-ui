@@ -3,8 +3,10 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-import './assets/index.less'
+import './assets/index.pcss'
+import router from './router/index'
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')

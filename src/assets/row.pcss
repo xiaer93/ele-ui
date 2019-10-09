@@ -1,21 +1,14 @@
-@import './mixin.less';
+@import './mixins/utils.pcss';
 .c-row{
     position: relative;
     box-sizing: border-box;
-    .clearfix();
+    @include utils-clearfix;
 }
-
 
 .c-row--flex{
     display: flex;
 }
 
-// @justify: start, center, end, space-between, space-around;
-// each(@justify, {
-//     .is-justify-@{value} {
-//         justify-content: @value;
-//     }
-// })
 .is-justify-start{
     justify-content: flex-start;
 }

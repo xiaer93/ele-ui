@@ -1,0 +1,19 @@
+@mixin utils-user-select($value) {
+    user-select: $value;
+}
+
+@mixin utils-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin utils-clearfix() {
+    &:before, &::after{
+        display: table;
+        content: "";
+    }
+    &:after{
+        clear: both;
+    }
+}

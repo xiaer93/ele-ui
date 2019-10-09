@@ -1,17 +1,16 @@
 <template>
-  <header class="c-header" :style="{height}">
+  <aside class="c-aside" :style="{width}">
       <slot></slot>
-  </header>
+  </aside>
 </template>
 
 <script>
 export default {
-    name: 'CHeader',
-
+    name: 'CSide',
     props: {
-        height: {
+        width: {
             type: String,
-            default: _.constant('60px')
+            default: '300px'
         }
     }
 }
