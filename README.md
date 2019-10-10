@@ -24,3 +24,5 @@ emitter--mixin，radio---radio-group---form的三级通信机制？
 
 aria标签属性，无障碍？
 
+emit触发的事件，原生是否可以访问到？button组件将如何封装的，
+

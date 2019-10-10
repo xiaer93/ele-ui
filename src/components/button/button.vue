@@ -56,6 +56,7 @@ export default {
 
     methods: {
         handleClick (evt) {
+          // console.log('btn::click') this.$emit('click', 123456)
             this.$emit('click', evt)
         }
     }

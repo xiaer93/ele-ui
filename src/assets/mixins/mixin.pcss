@@ -28,9 +28,15 @@
     /* fixme: why why why ??? */
     /* $currentSelector: $(^&)$(element-separator)$(element); */
 
-    &$(element-separator)$(element) {
-        @content;
+    @each $ele in $element {
+        &$(element-separator)$(ele) {
+            @content;
+        }
     }
+
+    /* &$(element-separator)$(element) {
+        @content;
+    } */
 
     /* @if hitAllSpecialNestRule($selector) {
         @at-root{
@@ -47,4 +53,36 @@
             }
         }
     } */
+}
+
+@mixin scroll-bar{
+    $scrollbar-thumb-background: #b4bccc;
+    $scrollbar-track-background: #fff;
+
+    &::-webkit-scrollbar{
+        z-index: 11;
+        width: 6px;
+
+        &:horizontal{
+            height: 6px;
+        }
+        &-thumb{
+            border-radius: 5px;
+            width: 6px;
+            background: $scrollbar-thumb-background;
+        }
+
+        &-corner {
+            background: $scrollbar-track-background;
+        }
+
+        &-track{
+            background: $scrollbar-track-background;
+
+            &-piece{
+                background: $scrollbar-track-background;
+                width: 6px;
+            }
+        }
+    }
 }

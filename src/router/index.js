@@ -36,6 +36,11 @@ const route = new VueRouter({
             name: 'checkbox',
             path: '/checkbox',
             component: _import('checkbox')
+        },
+        {
+            name: 'input',
+            path: '/input',
+            component: _import('input')
         }
     ]
 })
