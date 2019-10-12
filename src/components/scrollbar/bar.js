@@ -24,14 +24,16 @@ export default {
       const thumbHalf = (this.$refs.thumb[this.bar.offset] / 2)
       const thumbPositionPercentage = ((offset - thumbHalf) * 100 / this.$el[this.bar.offset])
 
+      // 修改scroll-wrap的scrollTop属性值。当值发生变化时会触发scroll事件，从而更新thumb的位置。
       this.wrap[this.bar.scroll] = (thumbPositionPercentage * this.wrap[this.bar.scrollSize] / 100)
-
     },
     clickThumbHandler (e) {
       if (e.ctrlKey || e.button === 2) return
 
       this.startDrag(e)
+      // getBoundingClientRect
       this[this.bar.axis] = (e.currentTarget[this.bar.offset] - (e[this.bar.client] - e.currentTarget.getBoundingClientRect()[this.bar.direction]))
+      console.log(this[this.bar.axis], e.currentTarget[this.bar.offset], e[this.bar.client], e.currentTarget.getBoundingClientRect()[this.bar.direction])
     },
     startDrag (e) {
       e.stopImmediatePropagation()

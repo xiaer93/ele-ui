@@ -41,6 +41,11 @@ const route = new VueRouter({
             name: 'input',
             path: '/input',
             component: _import('input')
+        },
+        {
+            name: 'scroll',
+            path: '/scroll',
+            component: _import('scroll')
         }
     ]
 })

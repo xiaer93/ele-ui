@@ -27,3 +27,10 @@ aria标签属性，无障碍？
 emit触发的事件，原生是否可以访问到？button组件将如何封装的，
 
 滚动组件如何实现，不依赖于浏览器的原生滚动。
+
+从scss迁移至postcss： https://www.sass.hk/skill/sass17.html
+
+$scrollbar-background-color: color-mod($color-text-secondary, alpha(30%));
+$scrollbar-hover-background-color: rgba($color-text-secondary, .5);
+
+自定义滚动的原理，还是要依赖于原生滚动的，但是自定义滚动条及动画效果。
