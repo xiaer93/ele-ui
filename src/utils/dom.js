@@ -82,3 +82,50 @@ export function removeClass (el, cls) {
     el.className = curClass
   }
 }
+
+const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
+const MOZ_HACK_REGEXP = /^moz([A_Z])/
+const camelCase = function (name) {
+  return name.replace(SPECIAL_CHARS_REGEXP, function (match, separator, letter, offset) {
+    return offset ? letter.toUpperCase() : letter
+  }).replace(MOZ_HACK_REGEXP, 'Moz$1')
+}
+
+const ieVersion = _.toNumber(document.documentMode)
+export const getStyle = ieVersion < 9 ? 
+  function(element, styleName) {
+    if (!element || !styleName) return null
+    styleName = camelCase(styleName)
+    if (styleName === 'float') {
+      styleName = 'styleFloat'
+    }
+
+    try {
+      switch(styleName) {
+        case 'opacity':
+          try {
+            // fixme: 这是什么操作？
+            return element.filters.item('alpha').opacity / 100
+          } catch {
+            return 1.0
+          }
+        default:
+          return (element.style[styleName] || element.currentStyle ? element.currentStyle[styleName] : null)
+      }
+    } catch (e) {
+      return element.style[styleName]
+    }
+  } : 
+  function (element, styleName) {
+    if (!element || !styleName) return null
+    styleName = camelCase(styleName)
+    if (styleName === 'float') {
+      styleName = 'cssFloat'
+    }
+    try {
+      let computed = document.defaultView.getComputedStyle(element, '')
+      return element.style[styleName] || computed ? computed[styleName] : null
+    } catch {
+      return element.style[styleName]
+    }
+  }
