@@ -13,11 +13,12 @@ on(document, 'mouseup', e => {
 
 // v-clickoutside指令函数
 function createDocumentHandler (el, binding, vnode) {
-  return function (mouseup = {}, mouseup = {}) {
+  return function (mouseup = {}, mousedown = {}) {
     if (!vnode ||
         !vnode.context ||
         !mouseup.target ||
         !mousedown.target ||
+        // el是数组吗？v-clickoutside指令可以传入数组el？？？
         el.contains(mouseup.target) ||
         el.contains(mousedown.target) ||
         el === mouseup.target ||
@@ -39,5 +40,26 @@ function createDocumentHandler (el, binding, vnode) {
  * <div v-element-clickoutside="handleClose"></div>
  */
 export default {
+  bind(el, binding, vnode) {
+    nodeList.push(el)
+    const id = seed++
+    el[ctx] = {
+      id,
+      documentHandler: createDocumentHandler(el, binding, vnode),
+      methodName: binding.expression,
+      bindingFn: binding.value
+    }
+  },
+  update(el, binding, vnode) {
+    el[ctx].documentHandler = createDocumentHandler(el, binding, vnode)
+    el[ctx].methodName = binding.expression
+    el[ctx].bindingFn = binding.value
+  },
 
+  unbind(el) {
+    const index = nodeList.findIndex(v => v[ctx].id === el[ctx].id)
+    if (index !== -1) nodeList.splice(index, 1)
+
+    delete el[ctx]
+  }
 }
