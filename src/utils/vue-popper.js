@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import {PopupManager} from './popup/index'
+import PopperJS from './popper'
 
-const PopperJS = require('./popper')
 const stop = e => e.stopPropagation()
 
 export default {
@@ -100,6 +100,8 @@ export default {
       if (_.isFunction(options.onUpdate)) {
         this.popperJS.onUpdate(options.onUpdate)
       }
+
+      // 避免冒泡至外层，导致关闭了popper？
       this.popperJS._popper.style.zIndex = PopupManager.nextZIndex()
       this.popperElm.addEventListener('click', stop)
     },
@@ -121,6 +123,11 @@ export default {
 
       this.popperJS.destroy()
       this.popperJS = null
+    },
+    destroyPopper () {
+      if (this.popperJS) {
+        this.resetTransformOrigin()
+      }
     },
 
     resetTransformOrigin () {
@@ -170,6 +177,7 @@ export default {
   },
 
   // fixme: 什么hack操作？
+  // 执行上面beforeDestroy操作？
   deactivated () {
     this.$options.beforeDestroy[0].call(this)
   }

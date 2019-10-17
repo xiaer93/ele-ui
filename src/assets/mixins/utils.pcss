@@ -8,6 +8,17 @@
     white-space: nowrap;
 }
 
+@mixin utils-vertical-center{
+    @at-root{
+        &::after{
+            display: inline-block;
+            content: "";
+            height: 100%;
+            vertical-align: middle;
+        }
+    }
+}
+
 @mixin utils-clearfix() {
     &:before, &::after{
         display: table;

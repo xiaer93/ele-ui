@@ -34,3 +34,9 @@ $scrollbar-background-color: color-mod($color-text-secondary, alpha(30%));
 $scrollbar-hover-background-color: rgba($color-text-secondary, .5);
 
 自定义滚动的原理，还是要依赖于原生滚动的，但是自定义滚动条及动画效果。
+
+
+
+PopperJS学习指南：
+
+1. popper组件

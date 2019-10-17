@@ -46,6 +46,16 @@ const route = new VueRouter({
             name: 'scroll',
             path: '/scroll',
             component: _import('scroll')
+        },
+        {
+            name: 'popper',
+            path: '/popper',
+            component: _import('popper')
+        },
+        {
+            name: 'autocomplete',
+            path: '/autocomplete',
+            component: _import('autocomplete')
         }
     ]
 })

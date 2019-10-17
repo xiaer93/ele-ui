@@ -39,6 +39,9 @@ const PopupManager = {
             instances[id] = instance
         }
     },
+    nextZIndex () {
+        return PopupManager.zIndex++
+    },
     deregister (id) {
         if (id) {
             // 置为null，后删除

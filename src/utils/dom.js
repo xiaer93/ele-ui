@@ -3,6 +3,7 @@ export const on = (function () {
   if (document.addEventListener) {
     return function (element, event, handler) {
       if (element && event && handler) {
+        // 冒泡阶段？
         element.addEventListener(event, handler, false)
       }
     }

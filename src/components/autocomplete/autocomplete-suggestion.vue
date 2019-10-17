@@ -61,8 +61,10 @@ export default {
   },
   mounted () {
     // hack操作？符合要求吗？
+    // 设定popper的dom元素
     this.$parent.popperElm = this.popperElm = this.$el
     this.referenceElm = this.$parent.$refs.input.$refs.input
+
     this.referenceList = this.$el.querySelector('.c-autocomplete-suggestion__list')
     this.referenceList.setAttribute('role', 'listbox')
     this.referenceList.setAttribute('id', this.id)

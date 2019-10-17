@@ -1,8 +1,8 @@
 <template>
   <!-- 基于c-input创建的高级组件 -->
-
   <div
     class="c-autocomplete"
+    v-clickoutside="close"
     role="combobox"
   >
     <c-input
@@ -136,6 +136,9 @@ export default {
       const suggestions = this.suggestions
       let isValidData = Array.isArray(suggestions) && suggestions.length > 0
       return (isValidData || this.loading) && this.activated
+    },
+    id () {
+      return `c-autocomplete-${generateId()}`
     }
   },
 
@@ -160,12 +163,58 @@ export default {
   created () {
     this.debouncedGetData = _.debounce(this.getData, this.debounce)
   },
+  mounted () {
+    this.$on('item-click', item => {
+      this.select(item)
+    })
+    const $input = this.getInput()
+    $input.setAttribute('role', 'textbox')
+  },
+  beforeDestroy () {
+    this.$refs.suggestions.$destroy()
+  },
   methods: {
-    highlight () {
+    highlight (index) {
+      if (!this.suggestionVisible || this.loading) return
 
+      if (index < 0) {
+        this.highlightedIndex = -1
+        return
+      }
+
+      if (index >= this.suggestions.length) {
+        index = this.suggestions.length - 1
+      }
+
+      const suggestion = this.$refs.suggestions.$el.querySelector('.c-autocomplete-suggestion__wrap')
+      const suggestionList = suggestions.querySelectorAll('.c-autocomplete__list li')
+
+      let highlightItem = suggestionList[index]
+      let scrollTop = suggestion.scrollTop
+      let offsetTop = highlightItem.offsetTop
+
+      if (offsetTop + highlightItem.scrollHeight > (scrollTop + suggestion.clientHeight)) {
+        suggestion.scrollTop += highlightItem.scrollHeight
+      }
+      if (offsetTop < scrollTop) {
+        suggestion.scrollTop -= highlightItem.scrollHeight
+      }
+
+      this.highlightedIndex = index
+      const $input = this.getInput()
+      // $input.setAttribute()
     },
-    handleKeyEnter() {
-      if (this.suggestionVisible)
+    handleKeyEnter(event) {
+      if (this.suggestionVisible && this.highlightedIndex >= 0 && this.highlightedIndex < this.suggestions.length) {
+        event.preventDefault()
+        this.select(this.suggestions[this.highlightedIndex])
+      } else if (this.selectWhenUnmatched) {
+        this.$emit('select', {value: this.value})
+        this.$nextTick(v => {
+          this.suggestions = []
+          this.highlightedIndex = 1
+        })
+      }
     },
     handleChange (value) {
       this.$emit('input', value)
@@ -196,6 +245,15 @@ export default {
       this.activated = false
     },
 
+    select (item) {
+      this.$emit('input', item[this.valueKey])
+      this.$emit('select', item)
+      this.$nextTick(v => {
+        this.suggestions = []
+        this.highlightedIndex = -1
+      })
+    },
+
     getData (queryString) {
       if (this.suggestionDisabled) return
 
@@ -211,6 +269,9 @@ export default {
           console.error('[Element Error] autocomplete suggestions must be an array')
         }
       })
+    },
+    getInput () {
+      return this.$refs.input.getInput()
     }
   }
 }
