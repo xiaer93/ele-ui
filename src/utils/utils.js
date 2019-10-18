@@ -36,3 +36,9 @@ export function merge (target) {
 export function generateId () {
   return Math.floor(Math.random() * 10000)
 }
+
+export function getPropByPath () {
+
+}
+
+export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')

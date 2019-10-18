@@ -56,6 +56,11 @@ const route = new VueRouter({
             name: 'autocomplete',
             path: '/autocomplete',
             component: _import('autocomplete')
+        },
+        {
+            name: 'tag',
+            path: '/tag',
+            component: _import('tag')
         }
     ]
 })

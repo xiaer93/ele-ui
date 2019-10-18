@@ -187,7 +187,7 @@ export default {
       }
 
       const suggestion = this.$refs.suggestions.$el.querySelector('.c-autocomplete-suggestion__wrap')
-      const suggestionList = suggestions.querySelectorAll('.c-autocomplete__list li')
+      const suggestionList = suggestion.querySelectorAll('.c-autocomplete-suggestion__list li')
 
       let highlightItem = suggestionList[index]
       let scrollTop = suggestion.scrollTop
@@ -201,7 +201,7 @@ export default {
       }
 
       this.highlightedIndex = index
-      const $input = this.getInput()
+      // const $input = this.getInput()
       // $input.setAttribute()
     },
     handleKeyEnter(event) {
