@@ -42,3 +42,19 @@ export function getPropByPath () {
 }
 
 export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+
+export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
+
+export const valueEquals = (a, b) => {
+  if (a === b) return true
+  if (!(a instanceof Array)) return false
+  if (!(b instanceof Array)) return false
+
+  if (a.length !== b.length) return false
+
+  for (let i = 0; i !== a.length; ++i) {
+    if (a[i] !== b[i]) return false
+  }
+
+  return true
+}

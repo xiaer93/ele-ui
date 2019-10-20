@@ -7,6 +7,10 @@
       <c-tag type="warning">标签四</c-tag>
       <c-tag type="danger">标签五</c-tag>
     </section>
+    
+    <section>
+      <c-tag closable>标签一</c-tag>
+    </section>
   </div>
 </template>
 

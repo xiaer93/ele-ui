@@ -61,8 +61,7 @@
 
 <script>
 import Emitter from '../../mixins/emitter'
-
-const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
+import { isKorean } from '../../utils/utils'
 
 export default {
   name:'CInput',
